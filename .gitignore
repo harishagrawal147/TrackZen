@@ -1,0 +1,28 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment folders
+venv/
+env/
+
+# Django database
+db.sqlite3
+*.sqlite3
+D:\WEBDEV\SKILLSPHERE\db.sqlite3
+
+# Logs
+*.log
+
+# Media uploads (agar user files upload karte ho)
+media/
+
+# VS Code settings
+.vscode/
+
+# Node modules (agar frontend use karte ho)
+node_modules/
+
+# Environment variables
+.env
