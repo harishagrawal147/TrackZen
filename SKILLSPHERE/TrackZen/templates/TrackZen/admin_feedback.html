@@ -1,0 +1,31 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Feedback Overview{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Feedback</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+        {% for fb in feedback_list %}
+        <tr>
+            <td>{{ fb.user.username }}</td>
+            <td>{{ fb.message }}</td>
+            <td>{{ fb.created_at|date:"d M Y H:i" }}</td>
+            <td>
+                <a href="{% url 'delete_feedback' fb.id %}" 
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Delete this feedback?');">
+                Delete
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No feedback today.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

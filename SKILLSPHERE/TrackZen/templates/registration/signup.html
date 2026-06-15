@@ -1,0 +1,44 @@
+{% extends "TrackZen/base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h2>Create Student Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }} {{ form.username }}
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>   
+        {{ form.password1.label_tag }} {{ form.password1 }}
+        {{ form.password2.label_tag }} {{ form.password2 }}
+        <button type="submit">Sign Up</button>
+    </form>
+    {% if form.errors %}
+    <div class="error-messages">
+        <h3>Registration failed due to:</h3>
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field|capfirst }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+</div>
+
+<div class="signup-rules">
+    <h3>Registration Rules</h3>
+    <ul>
+        <li>Username must be unique (no duplicates allowed).</li>
+        <li>Password must be at least 8 characters long.</li>
+        <li>Password must contain letters, numbers, and special characters.</li>
+        <li>Both password fields must match.</li>
+        <li>Email must be valid and unique.</li>
+        <li>All required fields must be filled in.</li>
+    </ul>
+</div>
+{% endblock %}

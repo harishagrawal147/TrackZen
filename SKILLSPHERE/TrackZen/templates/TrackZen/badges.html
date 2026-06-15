@@ -1,0 +1,30 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Badges Awarded{% endblock %}
+
+{% block content %}
+<div class="badges-container">
+    <h2>Awarded Badges</h2>
+    <table class="badges-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Badge</th>
+                <th>Awarded On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ub in awarded_badges %}
+                <tr>
+                    <td>{{ ub.user.username }}</td>
+                    <td>{{ ub.badge.name }}</td>
+                    <td>{{ ub.awarded_at|date:"d M Y" }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No badges awarded yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

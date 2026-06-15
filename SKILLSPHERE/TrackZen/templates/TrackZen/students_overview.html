@@ -1,0 +1,25 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Students Overview{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Students Overview</h2>
+    <table>
+        <tr><th>Username</th><th>Email</th><th>Total Points</th><th>Badges</th></tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.user.username }}</td>
+            <td>{{ student.user.email }}</td>
+            <td>{{ student.total_points }}</td>
+            <td>
+                {% for ub in student.user.userbadge_set.all %}
+                    {{ ub.badge.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    No badges
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

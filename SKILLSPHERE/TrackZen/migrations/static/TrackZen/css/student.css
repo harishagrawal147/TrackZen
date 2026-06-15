@@ -1,0 +1,27 @@
+.dashboard-container {
+    width: 80%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+.card {
+    background: #fff3e0;
+    border: 1px solid #080707;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.card h3 {
+    color: #080808;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th, table td {
+    border: 1px solid #888b8b;
+    padding: 8px;
+}
+table th {
+    background: #ecedec;
+    color: rgb(10, 10, 10);
+}

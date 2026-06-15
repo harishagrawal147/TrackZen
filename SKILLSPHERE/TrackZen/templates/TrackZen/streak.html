@@ -1,0 +1,24 @@
+{% extends "TrackZen/base.html" %}
+{% load static %}
+{% block title %}Streak{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Streak</title>
+    <link rel="stylesheet" href="{% static 'TrackZen/css/dashboard.css' %}">
+</head>
+<body>
+    <main>
+        <h2>Your Daily Streak</h2>
+        <div class="progress-container">
+            <div class="progress-bar" style="width: {{ streak_progress }}%;">
+                {{ streak_value }} days
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

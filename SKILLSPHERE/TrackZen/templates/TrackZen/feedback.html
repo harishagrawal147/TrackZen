@@ -1,0 +1,26 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Feedback{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'TrackZen/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Submit Feedback</h2>
+    <form method="post" action="{% url 'feedback' %}">
+        {% csrf_token %}
+        <textarea name="message" rows="4" cols="50" placeholder="Write your feedback..."></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Your Feedback History</h3>
+    <ul>
+        {% for fb in feedback_list %}
+            <li>{{ fb.created_at|date:"d M Y H:i" }} - {{ fb.message }}</li>
+        {% empty %}
+            <li>No feedback submitted yet.</li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}

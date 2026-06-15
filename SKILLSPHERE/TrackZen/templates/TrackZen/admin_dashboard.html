@@ -1,0 +1,38 @@
+{% extends "TrackZen/base.html" %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+
+   
+    <div class="card">
+        <h3>
+            <a href="{% url 'students_overview' %}">Students Overview</a>
+        </h3>
+    </div>
+
+    
+    <div class="card">
+        <h3>Leaderboard (Top 10)</h3>
+        <p><a href="{% url 'leaderboard_page' %}">View Top 10 Leaderboard</a></p>
+    </div>
+
+   
+    
+    <div class="card">
+        <h3>Badges Awarded</h3>
+        <p><a href="{% url 'badges_page' %}">View All Awarded Badges</a></p>
+    </div>
+
+    
+    <div class="card">
+        <h3>
+            <a href="{% url 'admin_feedback' %}">Feedback</a>
+        </h3>
+    </div>
+</div>
+{% endblock %}

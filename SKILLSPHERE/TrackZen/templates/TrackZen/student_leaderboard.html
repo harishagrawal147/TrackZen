@@ -1,0 +1,18 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Leaderboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Top 10 Students</h2>
+    <table>
+        <tr><th>Rank</th><th>User</th><th>Points</th></tr>
+        {% for student in top_students %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.user.username }}</td>
+            <td>{{ student.total_points }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

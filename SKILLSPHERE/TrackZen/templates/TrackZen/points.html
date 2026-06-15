@@ -1,0 +1,36 @@
+{% extends "TrackZen/base.html" %}
+{% load static %}
+
+{% block title %}Points Progress{% endblock %}
+
+{% block content %}
+<div class="points-container">
+    <h2>Your Points Progress</h2>
+
+    <p>Total Points: {{ total_points }}</p>
+
+    <div class="progress-bar">
+        <div class="progress" style="width: {{ points_progress }}%;"></div>
+    </div>
+
+    <canvas id="pointsChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('pointsChart').getContext('2d');
+    const pointsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ points_labels|safe }},
+            datasets: [{
+                label: 'Points Over Time',
+                data: {{ points_data|safe }},
+                borderColor: 'blue',
+                backgroundColor: 'lightblue',
+                fill: true,
+            }]
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "TrackZen/base.html" %}
+{% block title %}Task Completed{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="card">
+        <h2>Task Completed Successfully ✅</h2>
+        <p>You have earned 10 points for completing: <strong>{{ task.task_name }}</strong></p>
+        <p><a href="{% url 'student_dashboard' %}">Back to Dashboard</a></p>
+    </div>
+</div>
+{% endblock %}

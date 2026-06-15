@@ -1,0 +1,18 @@
+{% extends "TrackZen/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <h2>Administrator Dashboard</h2>
+    <p>Manage and monitor platform activity:</p>
+    <ul>
+        <li><a href="{% url 'leaderboard' %}">View Leaderboard</a></li>
+        <li><a href="{% url 'badges' %}">Manage Badges</a></li>
+        <li><a href="{% url 'streak' %}">Monitor Streaks</a></li>
+        <li><a href="{% url 'feedback' %}">Review Feedback</a></li>
+        <li><a href="{% url 'points' %}">Track Points</a></li>
+    </ul>
+</div>
+{% endblock %}

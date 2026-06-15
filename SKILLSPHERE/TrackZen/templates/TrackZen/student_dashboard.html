@@ -1,0 +1,104 @@
+{% extends "TrackZen/base.html" %}
+{% load static %}
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/student.css' %}">
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ user.username }}</h2>
+
+    <div class="card">
+        <h3>Your Points</h3>
+        <p>Total Points: {{ points.total_points }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Your Streak</h3>
+        {% if streak %}
+            <p>Current streak: {{ streak.current_streak }} days</p>
+            <p>Longest streak: {{ streak.longest_streak }} days</p>
+        {% else %}
+            <p>No streak data yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h3>Your Badges</h3>
+        <p><a href="{% url 'student_badges_page' %}">View All My Badges</a></p>
+    </div>
+
+    <div class="card">
+        <h3>
+            <a href="{% url 'student_leaderboard' %}">View Leaderboard</a>
+        </h3>
+    </div>
+
+    <div class="card">
+        <h3>Submit Feedback</h3>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="message" placeholder="Write feedback..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Today's Tasks</h3>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="new_task" placeholder="Enter new task">
+            <button type="submit">Add Task</button>
+        </form>
+
+        <table>
+            <tr><th>Task</th><th>Status</th><th>Action</th></tr>
+            {% for task in tasks_today %}
+            <tr>
+                <td>{{ task.task_name }}</td>
+                <td>{% if task.is_completed %}Completed{% else %}Pending{% endif %}</td>
+                <td>
+                    {% if not task.is_completed %}
+                    <form method="post" action="{% url 'mark_task_completed' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Mark Completed</button>
+                    </form>
+                    {% endif %}
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_task" value="{{ task.id }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No tasks added today.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="card">
+        <h3>
+            <a href="{% url 'task_history' %}">View Full Task History</a>
+        </h3>
+    </div>
+
+
+    <div class="card">
+        <h3>
+            <a href="{% url 'student_feedback' %}">My Feedback</a>
+        </h3>
+    </div>
+
+    
+    <div class="card danger-card">
+        <h3>Account Settings</h3>
+        <form method="post" action="{% url 'delete_account' %}">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Are you sure you want to delete your account?')">
+                Delete My Account
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

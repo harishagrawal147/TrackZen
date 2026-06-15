@@ -1,0 +1,23 @@
+{% extends "TrackZen/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">My Earned Badges</h2>
+
+  {% if my_badges %}
+    <div class="badge-container">
+      {% for badge in my_badges %}
+        <div class="badge-card">
+          <div class="badge-icon">🏆</div>
+          <div class="badge-info">
+            <h3>{{ badge.badge.name }}</h3>
+            <p>{{ badge.badge.description }}</p>
+            <small>Awarded on {{ badge.awarded_at|date:"d M Y" }}</small>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No badges earned yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

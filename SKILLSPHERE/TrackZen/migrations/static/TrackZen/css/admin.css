@@ -1,0 +1,31 @@
+.dashboard-container {
+    width: 90%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+.card {
+    background: #fff3e0;
+    border: 1px solid #0e0d0d;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+.card h3 {
+    color: #050505;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th, table td {
+    border: 1px solid #bbbbbb;
+    padding: 10px;
+    text-align: center;
+}
+table th {
+    background: #190c06;
+    color: lab(97.58% 0.01 -0.01);
+}
+table tr:nth-child(even) {
+    background: #fafafa;
+}
